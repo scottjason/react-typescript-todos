@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
+import './AddTodo.scss';
+import { Props } from './AddTodo.interface';
 
-export const AddTodo: FC = () => {
+export const AddTodo: React.FC<Props> = ({ onRenderItemInput }) => {
   return (
-    <form>
-      <input type='text' />
-      <button type='submit'>Add Todo</button>
-    </form>
+    <>
+      <button className='add-item-circle' onClick={onRenderItemInput} />
+    </>
   );
 };

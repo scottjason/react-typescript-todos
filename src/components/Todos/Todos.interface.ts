@@ -1,11 +1,7 @@
-import { onToggleTodo } from './Todos.types'
-
-export interface Todo {
-  text: string;
-  complete: boolean;
-}
+import { Todo } from '../../interface';
 
 export interface Props {
   todos: Todo[];
-  onToggleTodo: onToggleTodo;
+  shouldRenderItemInput: boolean;
+  onToggleTodo: (selectedTodo: Todo) => void;
 }

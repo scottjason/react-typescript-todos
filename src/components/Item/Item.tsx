@@ -1,21 +1,30 @@
-import React, { FC } from 'react';
+import React from 'react';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { Props } from './Item.interface';
+import './Item.scss';
 
-export const Item: FC<Props> = ({ todo, onToggleTodo }) => {
+export const Item: React.FC<Props> = ({ todo, shouldRenderItemInput, onToggleTodo }) => {
   return (
-    <li>
-      <label
-        style={{ textDecoration: todo.complete ? 'line-through' : undefined }}
-      >
-        <input
-          type='checkbox'
-          checked={todo.complete}
-          onChange={() => {
-            onToggleTodo(todo);
-          }}
-        />{' '}
-        {todo.text}
-      </label>
-    </li>
+    <>
+      <li className='item-container'>
+        <label className='label-wrap'>
+          <p className='todo'>{todo.text}</p>
+          <input
+            type='checkbox'
+            checked={todo.complete}
+            onChange={() => {
+              onToggleTodo(todo);
+            }}
+          />
+          {todo.complete && (
+            <span className='complete'>
+              <IoIosCheckmarkCircleOutline />
+            </span>
+          )}
+          {!todo.complete && <span className='checkmark'></span>}
+        </label>
+      </li>
+      {shouldRenderItemInput && <input type='text' className='item-input' />}
+    </>
   );
-}
+};

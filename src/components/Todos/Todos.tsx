@@ -1,12 +1,20 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Item } from '../Item/Item';
 import { Props } from './Todos.interface';
+import './Todos.scss';
 
-export const Todos: FC<Props> = ({ todos, onToggleTodo }) => {
+export const Todos: React.FC<Props> = ({ todos, shouldRenderItemInput, onToggleTodo }) => {
   return (
-    <ul>
-      {todos.map(todo => (
-        <Item key={todo.text} todo={todo} onToggleTodo={onToggleTodo} />
+    <ul className='todos-container'>
+      {todos.map((todo, idx) => (
+        <Item
+          key={todo.text}
+          todo={todo}
+          onToggleTodo={onToggleTodo}
+          shouldRenderItemInput={
+            idx === todos.length - 1 ? shouldRenderItemInput : false
+          }
+        />
       ))}
     </ul>
   );
